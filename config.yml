@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  run-recorded-tests:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command:  |
+              set -x
+              docker-compose up --abort-on-container-exit
+
+workflows:
+  main:
+    jobs:
+      - run-recorded-tests
